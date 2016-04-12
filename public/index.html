@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- META -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>todo web app</title>
+  <!--CSS-->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
+
+  <!--SCRIPTS-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+  <script src="core.js"></script>
+</html>
+
+<body ng-controller="mainController">
+
+  <p class="red">hello world hi</p>
+  <div class="container">
+    <div class="panel panel-default">
+      <h1>todos for today</h1>  <span class="badge red">{{todos.length}}</span>
+    </div>
+  </div>
+</body>
+<html>
