@@ -12,17 +12,47 @@
 
   <!--SCRIPTS-->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-  <script src="core.js"></script>
-</html>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- load angular -->
+  <script src="./js/main.js"></script>
 
-<body ng-controller="mainController">
 
-  <p class="red">hello world hi</p>
+<body ng-app="myApp" ng-controller="myCtrl">
+
   <div class="container">
-    <div class="panel panel-default">
-      <h1>todos for today</h1>  <span class="badge red">{{todos.length}}</span>
+
+    <div class="row">
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <h1 class="centeredtext fontmod">todos for today: {{todos.length}} </h1>  <span class="badge red"></span>
+      </div>
     </div>
+    <div class="col-md-4"></div>
   </div>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form>
+        <div class="form-group text-center">
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="todo in todos"> {{todo.text}} <input type="checkbox" ng-click="deleteTodo(todo._id)"> </li>
+          </ul>
+          <label for="inputTodo"> new todo</label>
+          <input type="text" class="form-control text-center" id="newTodo" placeholder="eat healthy!" ng-model="formData.text">
+          <button type="submit" class="btn btn-default" ng-click="createTodo()">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+  </div>
+
+  <script>
+
+  </script>
 </body>
-<html>
+</html>

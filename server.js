@@ -21,7 +21,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 
 //build model
-var ToDo = mongoose.model("ToDo", {
+var Todo = mongoose.model("Todo", {
   text: String
 });
 
@@ -37,22 +37,30 @@ console.log("app listening on port 8080");
 var router = express.Router();
 
 //get all the todos
-router.get('/todos', function(req, res){
-    Todo.find(function(err, res){
-
+function findTodos(res){
+    Todo.find(function(err, todos){ //get all the todos
       if(err){
         res.send(err);
       }
-
-      res.json(res);
+      res.json(todos);
     });
+}
+
+
+app.get('/api/todos', function(req, res){
+  Todo.find(function(err, todos){ //get all the todos
+    if(err){
+      res.send(err);
+    }
+    res.json(todos);
+  });
 });
 
 //create a todo then return all the todos
-router.post("todos", function(req, res){
+app.post('/api/todos', function(req, res){
+
     Todo.create({
-      text: res.body.text,  //data
-      done: false
+      text: req.body.text
     }, function(err, todo){  //callback
       if(err){
         res.send(err);
@@ -67,9 +75,25 @@ router.post("todos", function(req, res){
     });
 });
 
-router.use('/api',router);
+//delete a todo based on its unique id
+app.delete('/api/todos/:todo_id', function(req, res){
+    Todo.remove({
+       _id: req.params.todo_id
+    }, function(err, todo){
+        if(err){
+          res.send('betty: ' + err);
+        }
+
+        Todo.find(function(err, todos){ //get all the todos
+          if(err){
+            res.send(err);
+          }
+          res.json(todos);
+        });
+    });
+})
 
 //allow index.html to see other clientside files like css and js
 app.get('*', function(req, res){
-  res.sendfile('./public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });

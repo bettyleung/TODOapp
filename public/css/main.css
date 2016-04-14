@@ -1,4 +1,7 @@
-.red{
-  color: red;
+.fontmod{
   font-family: Raleway;
+}
+
+.centeredtext{
+  text-align: center;
 }
